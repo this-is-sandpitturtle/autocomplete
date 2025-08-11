@@ -14,6 +14,7 @@ public class AutocompletionService {
     public AutocompletionService(final List<Tree> searchTrees){
         this.searchTrees = searchTrees;
     }
+
     public List<String> getSuggestions(String prefix){
         assert prefix != null && !prefix.isEmpty() : "E prefix is null or empty";
         assert prefix.length() >= 3 : "E prefix-length has to be longer or equal to 3";

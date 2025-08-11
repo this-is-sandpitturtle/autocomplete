@@ -16,20 +16,6 @@ public class TreeFactory {
 
     private static final char[] firstLetters = {'a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'};
 
-//    @Bean(name = "A")
-//    public Tree createSearchTreeA() throws FileNotFoundException {
-//        Tree tree = new Tree(new Node('a'));
-//        File a = new File("./src/main/resources/wordlist_A.txt");
-//        Scanner reader = new Scanner(a);
-//        while (reader.hasNext()){
-//            String data = reader.nextLine();
-//            assert data != null && !data.isEmpty() : "E scanner read in empty line";
-//            tree.addWord(data);
-//        }
-//        tree.validate();
-//        return tree;
-//    }
-
     @Bean(name = "searchTrees")
     public List<Tree> createAllSearchTrees() throws FileNotFoundException {
         File[] wordlists = new File("./src/main/resources/wordlists").listFiles();
@@ -52,6 +38,7 @@ public class TreeFactory {
                 }
                 tree.validate();
                 searchTrees.add(tree);
+                reader.close();
             }
 
         }

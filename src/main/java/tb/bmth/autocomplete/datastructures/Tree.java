@@ -22,11 +22,8 @@ public class Tree {
     public void validate(){
         assert root != null && root.getChildren() != null : "E tree not initialized";
         assert !root.getChildren().isEmpty() : "E root-children not properly loaded";
-        System.out.println(root);
-        System.out.println(root.getChildren());
     }
 
-    //TODO:  Not case insensitive... it works with capitalized A but not with lowercase a for some reason
     public void addWord(String word) {
         assert word != null && !word.isEmpty() : "E word is null or empty";
         char[] characters = word.toCharArray();
@@ -37,8 +34,6 @@ public class Tree {
         }
         Node tempRoot = root;
         // start = 1 because the first letter is already in the tree root
-        // maybe already call with substring?!
-        //TODO: Repeating the first letter returns autocomplete results with this repeated letter
         for (int i = 1; i < word.length(); i++) {
             char character = characters[i];
             if (tempRoot.getChildren().isEmpty()) {
@@ -118,22 +113,15 @@ public class Tree {
                 suggestions.add(suggestion);
             }
 
-
-//            if(!suggestions.contains(suggestion)){
-//                suggestions.add(suggestion);
-//            }
-//            index++;
-            //but maybe it changes the value of all suggestions... only one way to find out
-//            for (char[] a : suggestions){
-//                System.out.println(String.valueOf(a));
-//            }
             tempRoot = initializeTempRoot(prefixArr);
             suggestion = new char[50];
         }
+
         List<String> out = suggestions.stream().map(String::valueOf).toList();
         for (String s : out){
             System.out.println(s);
         }
+
         assert out.size() <= 10 : "E too much autocomplete-suggestions";
         return out;
     }
